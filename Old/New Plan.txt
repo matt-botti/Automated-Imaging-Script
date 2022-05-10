@@ -1,0 +1,10 @@
+Run Powershell script (as exe)
+Get user input for programs to install
+    -> Set flags
+Check if programs user selected need installed
+    -> Override flags if programs already installed
+        (Only check if user selects to install a program)
+        (Always install Office product key if installing Office)
+Pass flags as arguments to singular python script (as exe)
+Each previously individual python script will instead be inside of a function
+Command line arguments determine which functions run

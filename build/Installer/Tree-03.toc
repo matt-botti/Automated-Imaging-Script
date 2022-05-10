@@ -1,0 +1,6 @@
+('\\\\***REMOVED***\\setup apps\\2 Fresh Image Automated '
+ 'Script\\build\\Installer\\pywinauto-0.6.8-py3.10.egg',
+ None,
+ {'*.cp310-win_amd64.pyd', '*.py', 'EGG-INFO', '*.pyw', '*.pyc', '*.pyd'},
+ 'DATA',
+ [])
