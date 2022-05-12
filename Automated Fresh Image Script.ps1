@@ -1,8 +1,8 @@
 $confirmAll = Read-Host "Do you want to install Office 2010, Sophos, and Zoom? If no, you will be prompted to individually select which programs to install. (y/n)"
-while (($confirmAll -notmatch "[yYnN]") -or ($confirmAll -notmatch "yyyy")) {
+while ($confirmAll -notmatch "[yYnN]") {
     $confirmAll = Read-Host "Please answer with either y or n. Do you want to install Office 2010, Sophos, Impero, and Zoom? (y/n)"
 }
-if (($confirmAll -match "[yY]") -or ($confirmAll -match "yyyy")) {
+if ($confirmAll -match "[yY]") {
     $confirmOffice = "y"
     $confirmSophos = "y"
     $confirmImpero = "y"
@@ -39,7 +39,7 @@ if ($printer -like "*Follow You*") {
     $confirmPrinter = "y"
 }
 
-if ($confirmAll -notmatch "yyyy") {
+#if ($confirmAll -notmatch "yyyy") {
     Write-Output " "
 
     Write-Output "Disabling Windows factory reset"
@@ -94,7 +94,7 @@ if ($confirmAll -notmatch "yyyy") {
         Write-Output "Windows is now activated"
     }
     Write-Output " "
-}
+#}
 
 if ($confirmOffice -match "[yY]") {
     Write-Output "Checking if Office 2010 is installed"
@@ -142,10 +142,10 @@ if ($confirmImpero -match "[yY]") {
         $confirmImpero = "n"
     } else {
         Write-Output "Running Impero installer..."
-        msiexec.exe /i "\\***REMOVED***\Setup Apps\Impero\Impero Education Pro v8503 Installers\ImperoClientSetup8503.msi" /passive /norestart
-        Write-Output "Creating txt file to point Impero at its server..."
-        New-Item "C:\Program Files (x86)\Impero Solutions Ltd\Impero Client\ServerIPFixed.txt"
-        Set-Content "C:\Program Files (x86)\Impero Solutions Ltd\Impero Client\ServerIPFixed.txt" "***REMOVED***"
+        & msiexec.exe /i "\\***REMOVED***\Setup Apps\Impero\Impero Education Pro v8503 Installers\ImperoClientSetup8503.msi" /quiet /norestart | Out-Null
+        Write-Output "Creating txt file to point Impero at its server... (Ignore any errors that come up, they are fine)"
+        New-Item "C:\Program Files (x86)\Impero Solutions Ltd\Impero Client\ServerIP.txt"
+        Set-Content "C:\Program Files (x86)\Impero Solutions Ltd\Impero Client\ServerIP.txt" "***REMOVED***"
     }
 
 } else {
