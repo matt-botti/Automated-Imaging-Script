@@ -187,7 +187,11 @@ if ($confirmZoom -match "[yY]") {
 }
 
 #if we aren't going to do anything with the python script, don't launch it
-if (($confirmPrinter -match "[nN]") -and ($confirmOffice -match "[nN]") -and ($confirmOfficePK -match "[nN]") -and ($confirmSophos -match "[nN]") -and ($confirmZoom -match "[nN]")) {
+if (     ($confirmPrinter -match "[nN]") `
+    -and ($confirmOffice -match "[nN]") `
+    -and ($confirmOfficePK -match "[nN]") `
+    -and ($confirmSophos -match "[nN]") `
+    -and ($confirmZoom -match "[nN]")) {
     Write-Output "Python script is not needed this time"
 } else {
     Start-Process "\\***REMOVED***\Setup Apps\2 Fresh Image Automated Script\dist\Installer.exe" $pythonArgs -Wait -NoNewWindow
