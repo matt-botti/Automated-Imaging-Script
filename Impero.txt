@@ -1,9 +1,0 @@
-https://support.imperosoftware.com/support/solutions/articles/44001768063-impero-client-connectivity
-
-Windows;
- In the directory for Impero on the client machines (C:\Program Files (x86)\Impero Solutions Ltd\Impero Client\),
-  create a file named 'ServerIPFixed.txt' - the contents of this file should be the IP address of the server. 
-  Once the ImperoClientSVC service (or the machine) has restarted, the client will connect to the server.
-
-New-Item "C:\Program Files (x86)\Impero Solutions Ltd\Impero Client\ServerIPFixed.txt"
-Set-Content "C:\Program Files (x86)\Impero Solutions Ltd\Impero Client\ServerIPFixed.txt" "***REMOVED***"
