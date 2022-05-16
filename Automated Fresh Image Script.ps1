@@ -141,7 +141,9 @@ if ($confirmSophos -match "[yY]") {
 }
 
 if ($confirmImpero -match "[yY]") {
-    $imperoInstalled = $null -ne (Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.DisplayName -eq "Impero Client" })
+    Write-Output "Checking if Impero is installed..."
+    $imperoFolder = "C:\Program Files (x86)\Impero Solutions Ltd\Impero Client"
+    $imperoInstalled = Test-Path -Path $imperoFolder
     if ($imperoInstalled) {
         Write-Output "Impero is already installed"
         $confirmImpero = "n"
