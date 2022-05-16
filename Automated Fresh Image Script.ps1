@@ -1,3 +1,8 @@
+$confirmSettings = Read-Host "Do you want settings changed? Windows factory reset, SMB, Windows activation, etc. (y/n)"
+while ($confirmSettings -notmatch "[yYnN]"){
+    $confirmSettings = Read-Host "Please answer with either y or n. Do you want settings changed?"
+}
+
 $confirmAll = Read-Host "Do you want to install Office 2010, Sophos, and Zoom? If no, you will be prompted to individually select which programs to install. (y/n)"
 while ($confirmAll -notmatch "[yYnN]") {
     $confirmAll = Read-Host "Please answer with either y or n. Do you want to install Office 2010, Sophos, Impero, and Zoom? (y/n)"
@@ -39,7 +44,7 @@ if ($printer -like "*Follow You*") {
     $confirmPrinter = "y"
 }
 
-#if ($confirmAll -notmatch "yyyy") {
+if ($confirmSettings -match "[yY]"){
     Write-Output " "
 
     Write-Output "Disabling Windows factory reset"
@@ -94,7 +99,7 @@ if ($printer -like "*Follow You*") {
         Write-Output "Windows is now activated"
     }
     Write-Output " "
-#}
+}
 
 if ($confirmOffice -match "[yY]") {
     Write-Output "Checking if Office 2010 is installed"
