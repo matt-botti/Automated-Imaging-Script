@@ -2,6 +2,7 @@
 
 Impero.txt
 
-./Old/
-./_pycache_/
-./build/
+**/Old/
+**/_pycache_/
+**/build/
+**/dist/
