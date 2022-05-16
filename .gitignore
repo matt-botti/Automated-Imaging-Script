@@ -1,0 +1,7 @@
+**/*.exe
+
+Impero.txt
+
+./Old
+./_pycache_
+./build

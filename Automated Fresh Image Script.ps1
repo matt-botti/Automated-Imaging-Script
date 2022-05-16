@@ -175,10 +175,11 @@ if ($confirmPrinter -match "[yY]") {
 }
 if ($confirmOffice -match "[yY]") {
     $pythonArgs += " office"
-    if ($confirmOfficePK -match "[yY]") {
-        $pythonArgs += " officePK"
-    }
 }
+if ($confirmOfficePK -match "[yY]") {
+    $pythonArgs += " officePK"
+}
+
 if ($confirmSophos -match "[yY]") {
     $pythonArgs += " sophos"
 }
