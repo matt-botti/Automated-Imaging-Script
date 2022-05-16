@@ -29,6 +29,7 @@ def printerInstall():
         printer.FinishButton.wait('ready exists',timeout=6000).click()
     except Exception as e:
         print("An error occurred with the printer installation: ", e.__class__.__name__)
+        print("")
         pass
         
     
@@ -55,11 +56,12 @@ def officeInstall():
         office.Progress.wait_not('exists',timeout=6000)
         #then finally exit the installer
         print("Exiting the installer...")
-        #click_input instead of click so pywinauto doesn't get caught up when the "restart" window opens
-        office.CloseButton.wait('exists ready',timeout=6000).click_input()
-        #TODO - Test if this vvv works
-        office = app.window(title="Setup")
-        if(office.NoButton.exists()):
+        #TODO - Make sure vv this vv works
+        if (office.CloseButton.exists(timeout=6000)):
+            print("Exiting the installer...")
+            #Keyboard hotkeys to close the installer, so pywinauto doesnt get caught up when new window appears
+            office.type_keys("%c")
+        if(office.NoButton.exists(timeout=30)):
             office.NoButton.wait('exists ready', timeout=6000).click()
         print("")
     except Exception as e:
@@ -88,16 +90,17 @@ def officePK():
         office.Progress.wait('exists',timeout=6000)
         #then wait for it to finish (not exist)
         office.Progress.wait_not('exists',timeout=6000)
-        #click_input instead of click so pywinauto doesn't get caught up when the "restart" window opens
-        office.CloseButton.wait('exists ready',timeout=6000).click_input()
-        print("Exiting the installer...")
-        #TODO - vv This doesn't work. Need to figure out how to hit "no" on the popup window after closing the main window
-        office = app.window(title="Setup")
-        if(office.NoButton.exists()):
+        #TODO - Make sure vv this vv works
+        if (office.CloseButton.exists(timeout=6000)):
+            print("Exiting the installer...")
+            #Keyboard hotkeys to close the installer, so pywinauto doesnt get caught up when new window appears
+            office.type_keys("%c")
+        if(office.NoButton.exists(timeout=30)):
             office.NoButton.wait('exists ready', timeout=6000).click()
         print("")
     except Exception as e:
         print("An error occurred with the Office product key installation: ", e.__class__.__name__)
+        print("")
         pass
 
 def sophosInstall():
@@ -127,6 +130,7 @@ def sophosInstall():
         print("")
     except Exception as e:
         print("An error occurred with the Sophos installation: ", e.__class__.__name__)
+        print("")
         pass
     
 def zoomInstall():
@@ -144,6 +148,7 @@ def zoomInstall():
         print("")
     except Exception as e:
         print("An error occurred with the Zoom installation: ", e.__class__.__name__)
+        print("")
         pass
 
 
