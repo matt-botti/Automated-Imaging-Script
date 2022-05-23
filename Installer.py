@@ -66,6 +66,7 @@ def officeInstall():
         print("")
     except Exception as e:
         print("An error occurred with the Office installation: ", e.__class__.__name__)
+        confirmOfficePK = False
         pass
         
         
@@ -78,12 +79,12 @@ def officePK():
 
         #First menu - Click 'Enter Product Key' radio button, then continue button
         print("Selecting the Product Key radio button and hitting Continue...")
-        office.ProductKey.click()
-        office.ContinueButton.click()
+        office.ProductKey.wait('ready exists', timeout=3000).click()
+        office.ContinueButton.wait('ready exists', timeout=3000).click()
         #Enter the product key, wait for the buttons to become clickable, then click them
         print("Entering product key and hitting continue...")
-        office.wait('ready').type_keys("RKFCH-HKWJM-WM4RK-BB6YW-4BWYF")
-        office.GroupBoxEnterYourProductKey.ContinueButton.wait('ready',timeout=30).click()
+        office.wait('ready', timeout=3000).type_keys("RKFCH-HKWJM-WM4RK-BB6YW-4BWYF")
+        office.GroupBoxEnterYourProductKey.ContinueButton.wait('ready',timeout=3000).click()
         office.ChooseTheInstallationYouWantGroupBox.ContinueButton.wait('ready').click()
         #first wait for the progress bar to exist
         print("Waiting for progress bar...")
