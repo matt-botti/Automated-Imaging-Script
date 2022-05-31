@@ -1,9 +1,9 @@
-$confirmSettings = Read-Host "Do you want settings changed? Windows factory reset, SMB, Windows activation, etc. (y/n)"
+$confirmSettings = Read-Host "Do you want settings changed? Equitrac printer, Windows factory reset, SMB, Windows activation, etc. (y/n)"
 while ($confirmSettings -notmatch "[yYnN]"){
     $confirmSettings = Read-Host "Please answer with either y or n. Do you want settings changed?"
 }
 
-$confirmAll = Read-Host "Do you want to install Office 2010, Sophos, and Zoom? If no, you will be prompted to individually select which programs to install. (y/n)"
+$confirmAll = Read-Host "Do you want to install Office 2010, Sophos, Impero, and Zoom? If no, you will be prompted to individually select which programs to install. (y/n)"
 while ($confirmAll -notmatch "[yYnN]") {
     $confirmAll = Read-Host "Please answer with either y or n. Do you want to install Office 2010, Sophos, Impero, and Zoom? (y/n)"
 }
@@ -34,17 +34,19 @@ if ($confirmAll -match "[yY]") {
     }
 }
 
-Write-Output "Checking if Equitrac printer needs added..."
-$printer = Get-Printer
-if ($printer -like "*Follow You*") {
-    Write-Output("Equitrac printer already installed on this machine")
-    $confirmPrinter = "n"
+
+
+if ($confirmSettings -match "[yY]"){
+    Write-Output "Checking if Equitrac printer needs added..."
+    $printer = Get-Printer
+    if ($printer -like "*Follow You*") {
+        Write-Output("Equitrac printer already installed on this machine")
+        $confirmPrinter = "n"
 } else {
     Write-Output "The Equitrac printer will be installed"
     $confirmPrinter = "y"
 }
 
-if ($confirmSettings -match "[yY]"){
     Write-Output " "
 
     Write-Output "Disabling Windows factory reset"
