@@ -1,9 +1,11 @@
 **/*.exe
 
 Impero.txt
+InstallServerIP.txt
+ImperoServerIP.txt
 
 **/Old/
-**/_pycache_/
+**/__pycache__/
 **/build/
 **/dist/
 **/.vscode/
