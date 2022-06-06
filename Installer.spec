@@ -4,7 +4,7 @@
 block_cipher = None
 
 
-a = Analysis(['\\\\***REMOVED***\\setup apps\\2 Fresh Image Automated Script\\Installer.py'],
+a = Analysis(['\\\\10.1.1.2\\setup apps\\2 Fresh Image Automated Script\\Installer.py'],
              pathex=[],
              binaries=[],
              datas=[],
