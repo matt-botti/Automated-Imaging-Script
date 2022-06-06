@@ -10,3 +10,4 @@ CompileAllToExe.ps1
 **/build/
 **/dist/
 **/.vscode/
+*.spec
