@@ -8,6 +8,8 @@ confirmOfficePK = False
 confirmSophos = False
 confirmZoom = False
 
+installServerIP = sys.argv[0]
+
 #parse cmd args here to change flags
 if "printer" in sys.argv: confirmPrinter = True
 if "office" in sys.argv: confirmOffice = True
@@ -37,7 +39,7 @@ def printerInstall():
 def officeInstall():
     try:
         print("Launching Office 2010 installer")
-        app = Application(backend='uia').start("//***REMOVED***/setup apps/office 2010/setup.exe", timeout=6000)   
+        app = Application(backend='uia').start("//" + installServerIP + "/setup apps/office 2010/setup.exe", timeout=6000)   
         office = app.window(title="Microsoft Office Professional Plus 2010")
 
         #check the box to agree to TOS
@@ -73,7 +75,7 @@ def officeInstall():
 def officePK():
     try:
         print("Launching Office 2010 installer for product key...")
-        app = Application(backend="uia").start("//***REMOVED***/setup apps/office 2010/setup.exe",timeout=6000)
+        app = Application(backend="uia").start("//" + installServerIP + "/setup apps/office 2010/setup.exe",timeout=6000)
         #start office setup
         office = app.window(title="Microsoft Office Professional Plus 2010")
 
@@ -107,7 +109,7 @@ def officePK():
 def sophosInstall():
     try:
         print("Launching Sophos installer...")
-        app = Application(backend='uia').start("//***REMOVED***/setup apps/Sophos Central Endpoint Installer/SophosSetup.exe")
+        app = Application(backend='uia').start("//" + installServerIP + "/setup apps/Sophos Central Endpoint Installer/SophosSetup.exe")
         #pywinauto has a hard time connecting to sophos, wait 5 seconds to improve likelihood that this works
         time.sleep(5)
         app = Application(backend="uia").connect(title="Sophos Install")
@@ -137,7 +139,7 @@ def sophosInstall():
 def zoomInstall():
     try:
         print("Launching Zoom installer...")
-        app = Application(backend='uia').start("//***REMOVED***/setup apps/zoom/zoominstaller.exe",timeout=6000)
+        app = Application(backend='uia').start("//" + installServerIP + "/setup apps/zoom/zoominstaller.exe",timeout=6000)
         app = Application(backend='uia').connect(title="Zoom",timeout=6000)
         zoom = app.window(title="Zoom")
 
