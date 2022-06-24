@@ -8,7 +8,7 @@ confirmOfficePK = False
 confirmSophos = False
 confirmZoom = False
 
-installServerIP = sys.argv[0]
+installServerIP = sys.argv[1]
 
 #parse cmd args here to change flags
 if "printer" in sys.argv: confirmPrinter = True

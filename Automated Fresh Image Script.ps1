@@ -81,7 +81,7 @@ if ($confirmSettings -match "[yY]") {
         Write-Output "Already connected to ACADEMYSCHOOLS"
     } else {
         Netsh WLAN delete profile "ACADEMYSCHOOLS"
-        Netsh WLAN add profile filename="$\\installServerIP\setup apps\1 Fresh Image Script\WLAN-ACADEMYSCHOOLS.XML"
+        Netsh WLAN add profile filename="\\$installServerIP\setup apps\1 Fresh Image Script\WLAN-ACADEMYSCHOOLS.XML"
         Netsh WLAN connect name="ACADEMYSCHOOLS"
         Write-Output "Done"
     }
@@ -161,7 +161,7 @@ if ($confirmImpero -match "[yY]") {
         Write-Output "Running Impero installer..."
         & msiexec.exe /i "\\$installServerIP\Setup Apps\Impero\Impero Education Pro v8503 Installers\ImperoClientSetup8503.msi" /quiet /norestart | Out-Null
         Write-Output "Creating txt file to point Impero at its server... (Ignore any errors that come up, they are fine)"
-        $imperoServerIP = Get-Content "\\$installServerIP/2 Fresh Image Automated Setup/ImperoServerIP.txt"
+        $imperoServerIP = Get-Content "\\$installServerIP\2 Fresh Image Automated Setup\ImperoServerIP.txt"
         New-Item "C:\Program Files (x86)\Impero Solutions Ltd\Impero Client\ServerIP.txt"
         Set-Content "C:\Program Files (x86)\Impero Solutions Ltd\Impero Client\ServerIP.txt" $imperoServerIP
     }
