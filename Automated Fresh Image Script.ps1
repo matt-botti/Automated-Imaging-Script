@@ -4,6 +4,7 @@ $confirmSettings = Read-Host "Do you want settings changed? Equitrac printer, Wi
 while ($confirmSettings -notmatch "[yYnN]"){
     $confirmSettings = Read-Host "Please answer with either y or n. Do you want settings changed?"
 }
+
 $confirmSMB = Read-Host "Do you want SMB 1.0 enabled? (y/n)"
 while ($confirmSMB -notmatch "[yYnN]"){
     $confirmSMB = Read-Host "Please answer with either y or n. Do you want SMB 1.0 enabled?"
