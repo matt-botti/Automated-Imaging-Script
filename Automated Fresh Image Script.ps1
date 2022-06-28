@@ -1,8 +1,12 @@
 $installServerIP = Get-Content "./InstallServerIP.txt"
 
-$confirmSettings = Read-Host "Do you want settings changed? Equitrac printer, Windows factory reset, SMB, Windows activation, etc. (y/n)"
+$confirmSettings = Read-Host "Do you want settings changed? Equitrac printer, Windows factory reset, Windows activation, etc. (y/n)"
 while ($confirmSettings -notmatch "[yYnN]"){
     $confirmSettings = Read-Host "Please answer with either y or n. Do you want settings changed?"
+}
+$confirmSMB = Read-Host "Do you want SMB 1.0 enabled? (y/n)"
+while ($confirmSMB -notmatch "[yYnN]"){
+    $confirmSMB = Read-Host "Please answer with either y or n. Do you want SMB 1.0 enabled?"
 }
 
 $confirmAll = Read-Host "Do you want to install Equitrac printer, Office 2010, Sophos, Impero, and Zoom? If no, you will be prompted to individually select which programs to install. (y/n)"
@@ -42,6 +46,17 @@ if ($confirmAll -match "[yY]") {
     }
 }
 
+if ($confirmSMB -match "[yY]"){
+    Write-Output "Checking if SMB 1.0 is enabled..."
+    $smb = Get-WindowsOptionalFeature -Online -FeatureName SMB1Protocol | Select-Object State
+    if ($smb -like "*Enabled*") {
+        Write-Output "SMB 1.0 is already enabled"
+    } else {
+        Write-Output "Enabling SMB 1.0"
+        Enable-WindowsOptionalFeature -Online -NoRestart -FeatureName smb1protocol
+    }
+}
+
 if ($confirmSettings -match "[yY]") {
     Write-Output " "
 
@@ -59,17 +74,6 @@ if ($confirmSettings -match "[yY]") {
     Write-Output "Disabling Windows Firewall"
     Set-NetFirewallProfile -Profile Domain, Private, Public -Enabled False
     Write-Output " "
-
-    Write-Output "Checking if SMB 1.0 is enabled..."
-    $smb = Get-WindowsOptionalFeature -Online -FeatureName SMB1Protocol | Select-Object State
-    if ($smb -like "*Enabled*") {
-        Write-Output "SMB 1.0 is already enabled"
-    } else {
-        Write-Output "Enabling SMB 1.0"
-        Enable-WindowsOptionalFeature -Online -NoRestart -FeatureName smb1protocol
-    }
-
-
 
     Write-Output "Removing Xbox Game Bar"
     Get-AppxPackage Microsoft.XboxGamingOverlay | Remove-AppxPackage
