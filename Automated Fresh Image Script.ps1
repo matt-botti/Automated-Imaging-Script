@@ -165,7 +165,7 @@ if ($confirmImpero -match "[yY]") {
     } else {
         Write-Output "Running Impero installer..."
         & msiexec.exe /i "\\$installServerIP\Setup Apps\Impero\Impero Education Pro v8503 Installers\ImperoClientSetup8503.msi" /quiet /norestart | Out-Null
-        Write-Output "Creating txt file to point Impero at its server... (Ignore any errors that come up, they are fine)"
+        Write-Output "Creating txt file to point Impero at its server..."
         $imperoServerIP = Get-Content "\\$installServerIP\2 Fresh Image Automated Setup\ImperoServerIP.txt"
         New-Item "C:\Program Files (x86)\Impero Solutions Ltd\Impero Client\ServerIP.txt"
         Set-Content "C:\Program Files (x86)\Impero Solutions Ltd\Impero Client\ServerIP.txt" $imperoServerIP

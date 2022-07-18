@@ -60,7 +60,6 @@ def officeInstall():
         print("Exiting the installer...")
         #TODO - Make sure vv this vv works
         if (office.CloseButton.exists(timeout=6000)):
-            print("Exiting the installer...")
             #Keyboard hotkeys to close the installer, so pywinauto doesnt get caught up when new window appears
             office.type_keys("%c")
         if(office.NoButton.exists(timeout=30)):
